@@ -23,7 +23,7 @@ const Tracking = () => {
      },[])
 
      const getTracking = async ()=>{
-          const response = await fetch('http://localhost:3000/api/tracking')
+          const response = await fetch('https://gedanglis.vercel.app/api/tracking')
           const result = await response.json()
           const location = result.location
           // setDevicePosition([parseFloat(location.latitude), parseFloat(location.longitude)])
