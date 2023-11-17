@@ -14,9 +14,9 @@ import Monitoring from "@/components/Monitoring"
 
 function page() {
   useEffect(() => {
-      if(user != null){
+      if(user != null || localStorage.getItem('user')){
         setLoading(false);
-        setLogin(sessionStorage.getItem('user'))
+        setLogin(localStorage.getItem('user'))
       }else{
         router.push("/")
       }
@@ -25,7 +25,6 @@ function page() {
 
   const {user} = useAuthContext()
   const router = useRouter()
-
   const [loading, setLoading] = useState(true)
   const [show, setShow] = useState(true)
   const [login, setLogin] = useState(false)
@@ -46,10 +45,7 @@ function page() {
               }
               
             </div>
-
           </div>)
-
-
       }
 
     </>

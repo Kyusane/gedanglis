@@ -3,8 +3,8 @@
 import { useMonitoringContext } from '../hooks/useMonitoringContext'
 
 import React from 'react'
-
 import dynamic from 'next/dynamic'
+
 import Loading from './Loading'
 
 const CircularBar = dynamic(() => import('./CircularBar')
@@ -26,7 +26,7 @@ const Monitoring = () => {
           [3, 13, 1, 55, 123, 545, 12, 3, 4, 12, 3, 3, 5],
           [1, 4, 2, 1, 543, 123, 123, 45, 77, 123, 544, 213, 123],
           [123, 45, 65, 65, 87, 134, 324, 123, 454, 123, 123, 123],
-          [455, 12, 43, 43, 43, 434, 343, 123, 244, 344, 343, 123]
+          [100, 98, 97, 95, 91, 89, 87, 86, 81, 78, 70, 67,65]
      ]
 
      return (
@@ -36,7 +36,6 @@ const Monitoring = () => {
                          <Graph graphData={graphData[showSection]} />
                     </div>
                     <CircularBar />
-
                </div>
           </div>
 

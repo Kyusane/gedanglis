@@ -13,7 +13,7 @@ const Navbar = ({userLogin}) => {
   function logoutHandler(){
     if(typeof window !== 'undefined'){
       dispatchAuth({type :"LOGOUT"})
-      sessionStorage.removeItem('user')
+      localStorage.removeItem('user')
       router.push('/')
     }
   }
@@ -42,7 +42,6 @@ const Navbar = ({userLogin}) => {
 
 
       </nav>
-
     </>
   )
 }

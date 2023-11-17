@@ -30,7 +30,7 @@ export const options = {
     },
     title: {
       display: true,
-      text: 'Chart.js Line Chart',
+      text: 'Graph',
     },
   },
 };
@@ -42,10 +42,9 @@ export default function Graph({ graphData }) {
     labels,
     datasets: [
       {
-        label: 'Dataset 1',
+        label: 'Data',
         data: graphData,
-        borderColor: 'rgb(0, 0, 0)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        borderColor: '#3581B8',
         tension: 0.4,
       },
     ],
