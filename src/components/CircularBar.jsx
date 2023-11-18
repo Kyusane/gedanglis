@@ -26,7 +26,7 @@ const CircularBar= () => {
      },[])
 
      const getMonitoring = async ()=>{
-          const response = await fetch('http://localhost:3000/api/monitoring')
+          const response = await fetch('http://85.31.225.40:3000/api/monitoring')
           const result = await response.json()
           const datas = result.monitoring
           setValue({
