@@ -30,8 +30,8 @@ export const GET = async(req) =>{
 export async function POST(req){
      const {latitude, longitude} = await req.json()
      realTrack = [{
-          latitude : latitude,
-          longitude : longitude
+          latitude : parseFloat(latitude),
+          longitude : parseFloat(longitude)
        }
      ]
      return NextResponse.json({
@@ -39,6 +39,7 @@ export async function POST(req){
           datas :{
                latitude : latitude,
                longitude : longitude
-          }
+          },
+          newReal : realTrack[0]
      })
 }
