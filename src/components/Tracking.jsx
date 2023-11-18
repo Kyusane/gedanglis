@@ -23,7 +23,7 @@ const Tracking = () => {
      },[])
 
      const getTracking = async ()=>{
-          const response = await fetch('http://127.0.0.1:3000/api/tracking')
+          const response = await fetch('http://85.31.225.40:3000/api/tracking')
           const result = await response.json()
           const location = result.location
           setDevicePosition([parseFloat(location.latitude), parseFloat(location.longitude)])
