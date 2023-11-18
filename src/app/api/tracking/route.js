@@ -4,8 +4,8 @@ import datas from "../../../lib/generated.json"
 var data = 0;
 
 var realTrack = [{
-    latitude : "-7.562678",
-   longitude : "110.853736"
+    latitude : -7.562678,
+   longitude : 110.853736
 }]
 
 // export const GET = async(req) =>{
