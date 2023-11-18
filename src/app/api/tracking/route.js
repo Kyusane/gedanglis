@@ -4,8 +4,8 @@ import datas from "../../../lib/generated.json"
 var data = 0;
 
 var realTrack = [{
-    latitude : -7.562678,
-   longitude : 110.853736
+    latitude : '-7.562678',
+   longitude : '110.853736'
 }]
 
 // export const GET = async(req) =>{
@@ -30,8 +30,8 @@ export const GET = async(req) =>{
 export async function POST(req){
      const {latitude, longitude} = await req.json()
      realTrack = [{
-          latitude : parseFloat(latitude),
-          longitude : parseFloat(longitude)
+          latitude : latitude,
+          longitude : longitude
        }
      ]
      return NextResponse.json({
@@ -39,7 +39,6 @@ export async function POST(req){
           datas :{
                latitude : latitude,
                longitude : longitude
-          },
-          newReal : realTrack[0]
+          }
      })
 }

@@ -26,7 +26,9 @@ const Tracking = () => {
           const response = await fetch('http://85.31.225.40:3000/api/tracking')
           const result = await response.json()
           const location = result.location
-          setDevicePosition([location.latitude, location.longitude])
+          setDevicePosition([parseFloat(location.latitude), parseFloat(location.longitude)])
+          // console.log(devicePosition)
+          // setDevicePosition([location.latitude, location.longitude])
      }
      
      const [showUserPosition, setShowUserPosition] = useState(false)
