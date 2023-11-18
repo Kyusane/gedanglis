@@ -25,7 +25,7 @@ const FormLogin = () => {
                setLoading(false)
                return
           }
-          const response = await fetch('https://gedanglis.vercel.app/api/authentication', {
+          const response = await fetch('http://127.0.0.1:3000/api/authentication', {
                method: "POST",
                headers: {
                     'Content-Type': 'application/json;charset=utf-8'
