@@ -20,6 +20,7 @@ const Graph = dynamic(() => import('./Graph')
      })
 
 const Monitoring = () => {
+
      const [value, setValue] = useState({
           value1 : 0,
           value2 : 0,
@@ -31,7 +32,7 @@ const Monitoring = () => {
           getMonitoring()
           const interval = setInterval(() => {
                getMonitoring()
-             }, 1000);
+          }, 3000);
           return () => clearInterval(interval);
      },[])
 
@@ -45,10 +46,10 @@ const Monitoring = () => {
                value3: parseFloat(datas.arus),
                value4: parseFloat(datas.baterai),
           })
+          console.log(datas)
      }
 
      const { showSection } = useMonitoringContext()
-
      const graphData = [
           [3, 13, 1, 55, 123, 545, 12, 3, 4, 12, 3, 3, 5],
           [1, 4, 2, 1, 543, 123, 123, 45, 77, 123, 544, 213, 123],
@@ -58,6 +59,7 @@ const Monitoring = () => {
 
      return (
           <div>
+               <div>{value.value4}</div>
                <div className="p-2 w-full h-[90%]  grid grid-cols-3 gap-5 items-center rounded-sm top-[10vh] rounded-xl shadow-2xl">
                     <div className="col-span-2">
                          <Graph graphData={graphData[showSection]} />

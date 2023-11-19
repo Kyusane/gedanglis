@@ -7,7 +7,6 @@ import { CircularProgressbar ,buildStyles} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 const CircularBar= ({value}) => {
-
      const {dispatchMonitoring} =  useMonitoringContext()
 
      return (
