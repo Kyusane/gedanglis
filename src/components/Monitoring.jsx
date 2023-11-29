@@ -59,9 +59,8 @@ const Monitoring = () => {
 
      return (
           <div>
-               <div>{value.value4}</div>
-               <div className="p-2 w-full h-[90%]  grid grid-cols-3 gap-5 items-center rounded-sm top-[10vh] rounded-xl shadow-2xl">
-                    <div className="col-span-2">
+               <div className="p-2 w-full h-max sm:grid sm:grid-cols-3 gap-5 items-center rounded-sm sm:top-[10vh] rounded-xl shadow-2xl">
+                    <div className="sm:col-span-2">
                          <Graph graphData={graphData[showSection]} />
                     </div>
                     <CircularBar value={value} />

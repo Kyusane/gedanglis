@@ -26,11 +26,11 @@ export const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: 'top',
+      position: 'right',
+      display: false,
     },
     title: {
-      display: true,
-      text: 'Graph',
+      display: false,
     },
   },
 };

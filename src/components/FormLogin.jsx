@@ -53,9 +53,9 @@ const FormLogin = () => {
                          <>
                               <form className='bg-main w-[max-content] h-[max-content] p-10 gap-3 flex justify-center items-start flex-col rounded-2xl shadow-2xl text-secondary transition-all'>
                                    <label className="font-bold">Username</label>
-                                   <input type='email' className='bg-secondary h-10 focus:outline-main w-[400px] p-3 text-black focus:rounded-xl transition-all rounded-md' ref={emailInputRef} placeholder='admin@admin.com' />
+                                   <input type='email' className='bg-secondary h-10 focus:outline-main w-[300px] sm:w-[400px] p-3 text-black focus:rounded-xl transition-all rounded-md' ref={emailInputRef} placeholder='admin@admin.com' />
                                    <label className="font-bold">Password</label>
-                                   <input type='password' autoComplete="off" className='bg-secondary focus:outline-main h-10 w-[400px] p-3 text-black focus:rounded-xl transition-all rounded-md' ref={passwordInputRef} />
+                                   <input type='password' autoComplete="off" className='bg-secondary focus:outline-main h-10 w-[300px] sm:w-[400px] p-3 text-black focus:rounded-xl transition-all rounded-md' ref={passwordInputRef} />
                                    {
                                         (error != null) ?
                                              <div className="w-full h-[max-content] bg-red-300 text-red-500 border-2 border-red-600 p-5">
@@ -66,9 +66,9 @@ const FormLogin = () => {
                                         sitekey="6Lcs6wkpAAAAANWKWwmwWahEH2w0I9DuBIT9LN3y" onChange={()=>setbtnDisabled(false)}>
                                              {
                                                   btnDisabled?
-                                                  <button type='submit' disabled className='w-full h-10 bg-slate-100 mt-8 hover:text-slate-100 hover:bg-red-600 text-main rounded-3xl hover:scale-105 transition-all'>Login</button>
+                                                  <button type='submit' disabled className='w-[300px] sm:w-full h-10 bg-slate-100 mt-8 hover:text-slate-100 hover:bg-red-600 text-main rounded-3xl hover:scale-105 transition-all'>Login</button>
                                                   : 
-                                                  <button type='submit'  onClick={loginHandler} className='w-full h-10 bg-slate-100 mt-8 hover:bg-blue-400 text-main rounded-3xl hover:scale-105 transition-all'>Login</button>
+                                                  <button type='submit'  onClick={loginHandler} className='w-[300px] sm:w-full  h-10 bg-slate-100 mt-8 hover:bg-blue-400 text-main rounded-3xl hover:scale-105 transition-all'>Login</button>
                                              }
                                    </ReCAPTCHA>
                               </form>

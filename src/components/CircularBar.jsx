@@ -10,8 +10,8 @@ const CircularBar= ({value}) => {
      const {dispatchMonitoring} =  useMonitoringContext()
 
      return (
-          <div className='grid grid-cols-2  gap-10 h-full p-10'>
-               <div className='hover:cursor-pointer hover:scale-90 transition-all' style={{ width: 170, height: 170 }} onClick={()=>dispatchMonitoring({type:"SHOW", payload:0})}>
+          <div className='grid grid-cols-2  gap-5 sm:gap-10 h-full sm:p-10'>
+               <div className='hover:cursor-pointer hover:scale-90 transition-all' style={{ width: 150, height: 150 }} onClick={()=>dispatchMonitoring({type:"SHOW", payload:0})}>
                     <CircularProgressbar value={(value.value1)/500*100} text={`${value.value1} W`} strokeWidth={15} styles={
                          buildStyles({
                               strokeLinecap: 'round',
@@ -25,7 +25,7 @@ const CircularBar= ({value}) => {
                     } />
 
                </div>
-               <div className='hover:cursor-pointer hover:scale-90 transition-all' style={{ width: 170, height: 170  }} onClick={()=>dispatchMonitoring({type:"SHOW", payload:1})}>
+               <div className='hover:cursor-pointer hover:scale-90 transition-all' style={{ width: 150, height: 150  }} onClick={()=>dispatchMonitoring({type:"SHOW", payload:1})}>
                     <CircularProgressbar value={(value.value2)/200*100} text={`${value.value2} V`} strokeWidth={15} styles={
                          buildStyles({
                               strokeLinecap: 'round',
@@ -38,7 +38,7 @@ const CircularBar= ({value}) => {
                          })
                     } />
                </div>
-               <div className='hover:cursor-pointer hover:scale-90 transition-all' style={{width: 170, height: 170 }} onClick={()=>dispatchMonitoring({type:"SHOW", payload:2})}>
+               <div className='hover:cursor-pointer hover:scale-90 transition-all' style={{width: 150, height: 150 }} onClick={()=>dispatchMonitoring({type:"SHOW", payload:2})}>
                     <CircularProgressbar value={(value.value3/10*100)} text={`${value.value3} A`} strokeWidth={15} styles={
                          buildStyles({
                               strokeLinecap: 'round',
@@ -51,7 +51,7 @@ const CircularBar= ({value}) => {
                          })
                     } />
                </div>
-               <div className='hover:cursor-pointer hover:scale-90 transition-all' style={{ width: 170, height: 170  }} onClick={()=>dispatchMonitoring({type:"SHOW", payload:3})}>
+               <div className='hover:cursor-pointer hover:scale-90 transition-all' style={{ width: 150, height: 150  }} onClick={()=>dispatchMonitoring({type:"SHOW", payload:3})}>
                     <CircularProgressbar value={value.value4} text={`${value.value4} %`} strokeWidth={15} styles={
                          buildStyles({
                               strokeLinecap: 'round',

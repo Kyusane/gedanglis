@@ -66,9 +66,9 @@ const Tracking = () => {
         }
 
      return (
-          <div className="p-2 w-full h-[90%] flex gap-5 items-start  top-[10vh] rounded-xl shadow-2xl">
+          <div className="p-2 sm:w-full h-[90%] flex flex-col sm:flex-row gap-5 items-start justify-center  top-[10vh] rounded-xl shadow-2xl">
                <Map history={history} position={devicePosition} showHistory={showHistory} showUserPos={showUserPosition} userPos={userPos} />
-               <div className=" h-[max-content] grid gap-5 p-10">
+               <div className="w-full sm:w-auto h-[max-content] sm:grid sm:gap-5 gap-2 flex flex-col p-10 justify-center items-center">
                     <button className={"bg-main px-5 py-2 rounded-xl text-secondary hover:scale-105"} onClick={e => setShowHistory(!showHistory)}>Show History</button>
                     <button className={"bg-main px-5 py-2 rounded-xl text-secondary hover:scale-105"} onClick={e => setShowUserPosition(!showUserPosition)}>Show Your Position</button>
                </div>

@@ -35,15 +35,14 @@ function page() {
         loading ? <Loading /> : (
           <div>
             <Navbar userLogin={login} />
-            <div className="w-full h-[90vh] bg-secondary p-5">
-              <nav className="flex gap-7 p-2" >
+            <div className="w-full h-[90vh] bg-secondary p-5 flex flex-col sm:gap-5">
+              <nav className="flex gap-5 p-2" >
                 <button className={`bg-main px-5 py-2 rounded-xl text-secondary hover:scale-105 transition-all hover:opacity-70`} onClick={e => setShow(true)}>Monitoring</button>
-                <button className={"bg-main px-5 py-2 rounded-xl text-secondary hover:scale-110 transition-all hover:opacity-70"} onClick={e => setShow(false)}>Tracking</button>
+                <button className={"bg-main px-5 py-2 rounded-xl text-secondary hover:scale-105 transition-all hover:opacity-70"} onClick={e => setShow(false)}>Tracking</button>
               </nav>
               {
                 show?<MonitoringContextProvider><Monitoring/></MonitoringContextProvider> :<Tracking/>
               }
-              
             </div>
           </div>)
       }
