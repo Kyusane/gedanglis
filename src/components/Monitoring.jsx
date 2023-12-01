@@ -1,9 +1,7 @@
 'use client'
 
 import { useMonitoringContext } from '../hooks/useMonitoringContext'
-
 import React ,{ useEffect, useState } from 'react'
-
 import dynamic from 'next/dynamic'
 import Loading from './Loading'
 
@@ -19,8 +17,7 @@ const Graph = dynamic(() => import('./Graph')
           loading: () => <Loading />
      })
 
-const Monitoring = () => {
-
+const Monitoring = ({deviceID}) => {
      const [value, setValue] = useState({
           value1 : 0,
           value2 : 0,
@@ -34,19 +31,24 @@ const Monitoring = () => {
                getMonitoring()
           }, 3000);
           return () => clearInterval(interval);
-     },[])
+     },[deviceID])
 
      const getMonitoring = async ()=>{
-          const response = await fetch(`http://${process.env.BASE_URL}/api/monitoring`)
-          const result = await response.json()
-          const datas = result.monitoring
-          setValue({
-               value1: parseFloat(datas.daya),
-               value2: parseFloat(datas.tegangan),
-               value3: parseFloat(datas.arus),
-               value4: parseFloat(datas.baterai),
+          const response = await fetch(`http://${process.env.BASE_URL}/api/monitoring/sget/${deviceID}`,{
+               method: "GET",
+               headers: {
+                    'Content-Type': 'application/json;charset=utf-8',
+                    "authorization" : `Bearer ${localStorage.getItem("token")}`
+               }
           })
-          console.log(datas)
+          const result = await response.json()
+          const datas = result.datas[0]
+          setValue({
+               value1: parseFloat(datas.rt_daya),
+               value2: parseFloat(datas.rt_tegangan),
+               value3: parseFloat(datas.rt_arus),
+               value4: parseFloat(datas.rt_baterai),
+          })
      }
 
      const { showSection } = useMonitoringContext()
@@ -66,8 +68,6 @@ const Monitoring = () => {
                     <CircularBar value={value} />
                </div>
           </div>
-
-
      )
 }
 

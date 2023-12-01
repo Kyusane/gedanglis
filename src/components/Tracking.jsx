@@ -1,42 +1,48 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-
 import dynamic from 'next/dynamic'
 import Loading from './Loading'
 
 const Map = dynamic(() => import('./Map')
-  , {
-    ssr: false,
-    loading: () => <Loading />
-  })
+     , {
+          ssr: false,
+          loading: () => <Loading />
+     })
 
 
-const Tracking = () => {
-     useEffect(()=>{
+const Tracking = ({ deviceID }) => {
+     useEffect(() => {
           getLocation()
           getTracking()
           const interval = setInterval(() => {
                getTracking()
-             }, 1000);
+          }, 1000);
           return () => clearInterval(interval);
-     
-     },[])
+     }, [deviceID])
 
-     const getTracking = async ()=>{
-          const response = await fetch(`http://${process.env.BASE_URL}/api/tracking`)
-          const result = await response.json()
-          const location = result.location
-          setDevicePosition([parseFloat(location.latitude), parseFloat(location.longitude)])
-          // console.log(devicePosition)
-          // setDevicePosition([location.latitude, location.longitude])
+     const getTracking = async () => {
+          try {
+               const response = await fetch(`http://${process.env.BASE_URL}/api/tracking/sget/${deviceID}`, {
+                    method: "GET",
+                    headers: {
+                         'Content-Type': 'application/json;charset=utf-8',
+                         "authorization": `Bearer ${localStorage.getItem("token")}`
+                    }
+               })
+               const result = await response.json()
+               const location = result.position[0]
+               console.log(location)
+               setDevicePosition([parseFloat(location.rt_lat), parseFloat(location.rt_long)])
+          } catch {
+               setDevicePosition([0, 0])
+          }
+
      }
-     
+
      const [showUserPosition, setShowUserPosition] = useState(false)
-     const [userPos, setUserPos] = useState([0,0])
-
+     const [userPos, setUserPos] = useState([0, 0])
      const [showHistory, setShowHistory] = useState(false)
-     const [devicePosition, setDevicePosition] = useState([-7.562678,110.853736])
-
+     const [devicePosition, setDevicePosition] = useState([-7.562678, 110.853736])
      const history = [
           {
                lat: -7.5510,
@@ -57,13 +63,13 @@ const Tracking = () => {
 
      function getLocation() {
           if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
+               navigator.geolocation.getCurrentPosition(showPosition);
           }
-        }
-        
-        function showPosition(position) {
-          setUserPos([position.coords.latitude,position.coords.longitude])
-        }
+     }
+
+     function showPosition(position) {
+          setUserPos([position.coords.latitude, position.coords.longitude])
+     }
 
      return (
           <div className="p-2 sm:w-full h-[90%] flex flex-col sm:flex-row gap-5 items-start justify-center  top-[10vh] rounded-xl shadow-2xl">

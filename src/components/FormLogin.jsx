@@ -6,6 +6,7 @@ import ReCAPTCHA from 'react-google-recaptcha'
 import Loading from '../components/Loading'
 
 const FormLogin = () => {
+
      const { dispatchAuth } = useAuthContext()
      const Router = useRouter()
      const emailInputRef = useRef(null);
@@ -15,43 +16,68 @@ const FormLogin = () => {
      const [loading, setLoading] = useState(false)
 
      const loginHandler = async (e) => {
-          setLoading(true)
-          e.preventDefault()
-          const email = emailInputRef.current.value;
-          const password = passwordInputRef.current.value;
+          try {
+               setLoading(true)
+               e.preventDefault()
+               const email = emailInputRef.current.value;
+               const password = passwordInputRef.current.value;
 
-          if (email == '' || password == '') {
-               setError("Please input your Username/Password")
-               setLoading(false)
-               return
-          }
-          const response = await fetch(`http://${process.env.BASE_URL}/api/authentication`, {
-               method: "POST",
-               headers: {
-                    'Content-Type': 'application/json;charset=utf-8'
-               },
-               body: JSON.stringify({
-                    username: email,
-                    password: password
+               if (email == '' || password == '') {
+                    setError("Please input your Username/Password")
+                    setLoading(false)
+                    return
+               }
+               const response = await fetch(`http://${process.env.BASE_URL}/api/user/login`, {
+                    method: "POST",
+                    headers: {
+                         'Content-Type': 'application/json;charset=utf-8'
+                    },
+                    body: JSON.stringify({
+                         email: email,
+                         password: password
+                    })
                })
-          })
-
-          const result = await response.json()
-          if (result.datas.loginStatus) {
-               localStorage.setItem("user", true)
-               dispatchAuth({ type: "LOGIN", payload: email });
-               Router.replace("/account")
-          } else {
-               setError("Username / Password tidak tepat")
+               const result = await response.json()
+               if (result.token) {
+                    localStorage.setItem("token", result.token)
+                    localStorage.setItem("email", result.email)
+                    dispatchAuth({ type: "LOGIN", payload: result });
+                    Router.replace("/account")
+               } else {
+                    setLoading(false)
+                    setError(result.error)
+               }
+          } catch {
+               setLoading(false)
           }
-          setLoading(false)
+
+          // const response = await fetch(`http://${process.env.BASE_URL}/api/authentication`, {
+          //      method: "POST",
+          //      headers: {
+          //           'Content-Type': 'application/json;charset=utf-8',
+          //      },
+          //      body: JSON.stringify({
+          //           username: email,
+          //           password: password
+          //      })
+          // })
+
+          // const result = await response.json()
+          // if (result.datas.loginStatus) {
+          //      localStorage.setItem("user", true)
+          //      dispatchAuth({ type: "LOGIN", payload: email });
+          //      Router.replace("/account")
+          // } else {
+          //      setError("Username / Password tidak tepat")
+          // }
+          // setLoading(false)
      }
      return (
           <>
                {
                     loading ? <Loading /> :
                          <>
-                              <form className='bg-main w-[max-content] h-[max-content] p-10 gap-3 flex justify-center items-start flex-col rounded-2xl shadow-2xl text-secondary transition-all'>
+                              <form className='bg-main w-[max-content] h-[max-content] p-5 sm:p-10 gap-3 flex justify-center items-start flex-col rounded-2xl shadow-2xl text-secondary transition-all'>
                                    <label className="font-bold">Username</label>
                                    <input type='email' className='bg-secondary h-10 focus:outline-main w-[300px] sm:w-[400px] p-3 text-black focus:rounded-xl transition-all rounded-md' ref={emailInputRef} placeholder='admin@admin.com' />
                                    <label className="font-bold">Password</label>
@@ -63,13 +89,13 @@ const FormLogin = () => {
                                              </div> : null
                                    }
                                    <ReCAPTCHA className='w-full flex flex-col-reverse items-center'
-                                        sitekey="6Lcs6wkpAAAAANWKWwmwWahEH2w0I9DuBIT9LN3y" onChange={()=>setbtnDisabled(false)}>
-                                             {
-                                                  btnDisabled?
+                                        sitekey={process.env.SITE_KEY} onChange={() => setbtnDisabled(false)}>
+                                        {
+                                             btnDisabled ?
                                                   <button type='submit' disabled className='w-[300px] sm:w-full h-10 bg-slate-100 mt-8 hover:text-slate-100 hover:bg-red-600 text-main rounded-3xl hover:scale-105 transition-all'>Login</button>
-                                                  : 
-                                                  <button type='submit'  onClick={loginHandler} className='w-[300px] sm:w-full  h-10 bg-slate-100 mt-8 hover:bg-blue-400 text-main rounded-3xl hover:scale-105 transition-all'>Login</button>
-                                             }
+                                                  :
+                                                  <button type='submit' onClick={loginHandler} className='w-[300px] sm:w-full  h-10 bg-slate-100 mt-8 hover:bg-blue-400 text-main rounded-3xl hover:scale-105 transition-all'>Login</button>
+                                        }
                                    </ReCAPTCHA>
                               </form>
                          </>

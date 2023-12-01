@@ -2,7 +2,9 @@
 const nextConfig = {
      env: {
           // BASE_URL: '85.31.225.40:3000',
-          BASE_URL: 'localhost:3000',
+          //BASE_URL: 'localhost:5174',
+          BASE_URL: "universedev.site:5174",
+          SITE_KEY: "6Lcs6wkpAAAAANWKWwmwWahEH2w0I9DuBIT9LN3y",
         },
 }
 

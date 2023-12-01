@@ -6,8 +6,7 @@ import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 import "leaflet-defaulticon-compatibility";
 
 const Map = ({ history, showHistory, showUserPos, userPos, position }) => {
-
-     const zoom = 14;
+     const zoom = 9;
      return (
           <>
                <MapContainer className={"sm:w-3/4 w-full h-[70vh]"} center={position} zoom={zoom} scrollWheelZoom={true}>
