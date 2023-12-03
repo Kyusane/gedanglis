@@ -15,17 +15,10 @@ const Map = ({ history, showHistory, showUserPos, userPos, position }) => {
                          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
                     <Marker position={position}>
-                         <Popup>
-                              gerobak
-                         </Popup>
+                         <Popup>gerobak</Popup>
                     </Marker>
                     {
-                         showUserPos ?
-                              <Marker position={userPos}>
-                                   <Popup>
-                                        Your Position
-                                   </Popup>
-                              </Marker> : null
+                         showUserPos ? <Marker position={userPos}><Popup>Your Position</Popup></Marker> : null
                     }
                     {
                          showHistory ?
@@ -39,7 +32,6 @@ const Map = ({ history, showHistory, showUserPos, userPos, position }) => {
                     }
                </MapContainer>
           </>
-
      )
 }
 

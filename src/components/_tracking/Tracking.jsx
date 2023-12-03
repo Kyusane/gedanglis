@@ -1,14 +1,15 @@
 'use client'
+
 import React, { useEffect, useState } from 'react'
+import { useAuthContext } from "@/hooks/useAuthContext"
 import dynamic from 'next/dynamic'
-import Loading from './Loading'
+import Loading from '../_loading/Loading'
 
 const Map = dynamic(() => import('./Map')
      , {
           ssr: false,
           loading: () => <Loading />
      })
-
 
 const Tracking = ({ deviceID }) => {
      useEffect(() => {
@@ -26,19 +27,16 @@ const Tracking = ({ deviceID }) => {
                     method: "GET",
                     headers: {
                          'Content-Type': 'application/json;charset=utf-8',
-                         "authorization": `Bearer ${localStorage.getItem("token")}`
+                         "authorization": `Bearer ${user.token}`
                     }
                })
                const result = await response.json()
                const location = result.position[0]
-               console.log(location)
                setDevicePosition([parseFloat(location.rt_lat), parseFloat(location.rt_long)])
-          } catch {
-               setDevicePosition([0, 0])
-          }
+          } catch { setDevicePosition([0, 0]) }
 
      }
-
+     const { user } = useAuthContext()
      const [showUserPosition, setShowUserPosition] = useState(false)
      const [userPos, setUserPos] = useState([0, 0])
      const [showHistory, setShowHistory] = useState(false)

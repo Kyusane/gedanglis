@@ -1,13 +1,12 @@
 'use client'
 
-import { useMonitoringContext } from '../hooks/useMonitoringContext';
+import { useMonitoringContext } from '../../hooks/useMonitoringContext';
 import React from 'react'
 import { CircularProgressbar ,buildStyles} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 const CircularBar= ({value}) => {
      const {dispatchMonitoring} =  useMonitoringContext()
-
      return (
           <div className='grid grid-cols-2  gap-5 sm:gap-10 h-full sm:p-10'>
                <div className='hover:cursor-pointer hover:scale-90 transition-all' style={{ width: 150, height: 150 }} onClick={()=>dispatchMonitoring({type:"SHOW", payload:0})}>

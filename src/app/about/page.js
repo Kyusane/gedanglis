@@ -1,7 +1,6 @@
 'use client'
 
 import Navbar from "@/components/Navbar";
-
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import { useEffect, } from 'react'
@@ -10,6 +9,7 @@ function page() {
   useEffect(() => {
     AOS.init({ duration: 500 })
   }, [])
+
   return (
     <>
       <Navbar />

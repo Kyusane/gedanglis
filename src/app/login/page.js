@@ -1,16 +1,17 @@
 'use client'
 
-import React, { useEffect, useState, } from 'react'
+import React, { useEffect } from 'react'
+import { useAuthContext } from "@/hooks/useAuthContext"
 import Navbar from '@/components/Navbar'
 import FormLogin from '@/components/FormLogin'
 import { useRouter } from 'next/navigation'
 
-
 const page = () => {
   useEffect(()=>{
-    localStorage.getItem('token') ? router.push('/account') : null
+    user.email != "" ? router.push('/account') : null
   },[])
 
+  const {user}= useAuthContext()
   const router = useRouter()
   return (
     <>

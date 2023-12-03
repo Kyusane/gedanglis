@@ -1,12 +1,11 @@
+'use client'
 import React, { useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuthContext } from '../hooks/useAuthContext'
-
 import ReCAPTCHA from 'react-google-recaptcha'
-import Loading from '../components/Loading'
+import Loading from './_loading/Loading'
 
 const FormLogin = () => {
-
      const { dispatchAuth } = useAuthContext()
      const Router = useRouter()
      const emailInputRef = useRef(null);
@@ -21,7 +20,6 @@ const FormLogin = () => {
                e.preventDefault()
                const email = emailInputRef.current.value;
                const password = passwordInputRef.current.value;
-
                if (email == '' || password == '') {
                     setError("Please input your Username/Password")
                     setLoading(false)
@@ -39,9 +37,8 @@ const FormLogin = () => {
                })
                const result = await response.json()
                if (result.token) {
-                    localStorage.setItem("token", result.token)
-                    localStorage.setItem("email", result.email)
-                    dispatchAuth({ type: "LOGIN", payload: result });
+                    localStorage.setItem('credential',JSON.stringify(result))
+                    dispatchAuth({ type: "LOGIN", payload: result })
                     Router.replace("/account")
                } else {
                     setLoading(false)
@@ -50,27 +47,6 @@ const FormLogin = () => {
           } catch {
                setLoading(false)
           }
-
-          // const response = await fetch(`http://${process.env.BASE_URL}/api/authentication`, {
-          //      method: "POST",
-          //      headers: {
-          //           'Content-Type': 'application/json;charset=utf-8',
-          //      },
-          //      body: JSON.stringify({
-          //           username: email,
-          //           password: password
-          //      })
-          // })
-
-          // const result = await response.json()
-          // if (result.datas.loginStatus) {
-          //      localStorage.setItem("user", true)
-          //      dispatchAuth({ type: "LOGIN", payload: email });
-          //      Router.replace("/account")
-          // } else {
-          //      setError("Username / Password tidak tepat")
-          // }
-          // setLoading(false)
      }
      return (
           <>

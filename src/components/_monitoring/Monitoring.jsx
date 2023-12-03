@@ -1,9 +1,10 @@
 'use client'
 
-import { useMonitoringContext } from '../hooks/useMonitoringContext'
+import { useMonitoringContext } from '../../hooks/useMonitoringContext'
+import { useAuthContext } from "@/hooks/useAuthContext"
 import React ,{ useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
-import Loading from './Loading'
+import Loading from '../_loading/Loading'
 
 const CircularBar = dynamic(() => import('./CircularBar')
      , {
@@ -38,7 +39,7 @@ const Monitoring = ({deviceID}) => {
                method: "GET",
                headers: {
                     'Content-Type': 'application/json;charset=utf-8',
-                    "authorization" : `Bearer ${localStorage.getItem("token")}`
+                    "authorization" : `Bearer ${user.token}`
                }
           })
           const result = await response.json()
@@ -50,7 +51,7 @@ const Monitoring = ({deviceID}) => {
                value4: parseFloat(datas.rt_baterai),
           })
      }
-
+     const {user} = useAuthContext()
      const { showSection } = useMonitoringContext()
      const graphData = [
           [3, 13, 1, 55, 123, 545, 12, 3, 4, 12, 3, 3, 5],
