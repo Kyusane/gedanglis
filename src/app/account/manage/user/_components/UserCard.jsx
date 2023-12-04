@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 
 const UserCard = ({ data }) => {
      const router = useRouter()
-     const {user , dispatchAuth} =useAuthContext()
+     const { user, dispatchAuth } = useAuthContext()
      const disableHandler = async (target, isActive) => {
           const response = await fetch(`http://${process.env.BASE_URL}/api/user/change/isactive`, {
                method: "POST",
@@ -12,18 +12,36 @@ const UserCard = ({ data }) => {
                     'Content-Type': 'application/json;charset=utf-8',
                     "authorization": `Bearer ${user.token}`
                },
-               body : JSON.stringify({
-                    isActive : isActive ,
-                    target : target
+               body: JSON.stringify({
+                    isActive: isActive,
+                    target: target
                })
           })
+          dispatchAuth({ type: "REFRESH" })
+     }
 
-     dispatchAuth({type:"REFRESH"})
-
+     const deleteHandler = async (target) => {
+          const response = await fetch(`http://${process.env.BASE_URL}/api/user/delete`, {
+               method: "DELETE",
+               headers: {
+                    'Content-Type': 'application/json;charset=utf-8',
+                    "authorization": `Bearer ${user.token}`
+               },
+               body: JSON.stringify(
+                    {
+                        target : target
+                    }
+               )
+          })
+          if (!response.ok) {
+               const error = await response.json()
+               alert(error.error)
+          }
+          dispatchAuth({ type: "REFRESH" })
      }
      return (
-          <div className={` ${data.isactive ? 'bg-green-400' : 'bg-red-400'} flex w-full shadow-lg h-max  px-10 sm:px-20 py-3 justify-between items-center
-          bg-slate-100 rounded-md text-green-950 hover:text-secondary hover:bg-main font-bold`}>
+          <div className={` ${data.isactive ? "bg-green-400 " : "bg-red-400"} flex w-full shadow-lg h-max  px-10 sm:px-20 py-3 justify-between items-center
+           rounded-md text-green-950 hover:text-secondary hover:bg-main font-bold`}>
                <div className='flex gap-2 flex-col'>
                     <h1>Name: {data.name}</h1>
                     <h1>Email : {data.email}</h1>
@@ -31,9 +49,9 @@ const UserCard = ({ data }) => {
                <h1>Device Access : {data.device_access}</h1>
                <div className='flex sm:gap-10 gap-2'>
                     <button className='hover:bg-secondary px-5 py-1 rounded-lg hover:text-main'
-                         onClick={e => disableHandler(data.user_id,data.isactive? '0':'1')}>{data.isactive? "Disable" : "Active"}</button>
+                         onClick={e => disableHandler(data.user_id, data.isactive ? '0' : '1')}>{data.isactive ? "Disable" : "Active"}</button>
                     <button className='hover:bg-secondary px-5 py-1 rounded-lg hover:text-main'
-                         onClick={e => router.push(`/account/report/tracking/`)}>Delete</button>
+                         onClick={e => deleteHandler(data.user_id)}>Delete</button>
                </div>
           </div>
      )

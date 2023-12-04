@@ -22,7 +22,6 @@ function page() {
           } else {
                router.push("/")
           }
-
      }, [])
 
      const [deviceID, setDeviceID] = useState("GDL-001")
