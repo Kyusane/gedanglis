@@ -14,8 +14,8 @@ import Monitoring from "@/components/_monitoring/Monitoring"
 
 function page() {
      useEffect(() => {
-          user.email ==""? dispatchAuth({type: "LOGIN", payload: JSON.parse(localStorage.getItem("credential"))}):null
-          if (user.email != "") {
+          user.email == "" ? dispatchAuth({type: "LOGIN", payload: JSON.parse(localStorage.getItem("credential"))}):null
+          if (user.email !="") {
                setLoading(false);
                setLogin(user.token ? true : false)
                setAccess(user.user.device_access)
@@ -23,7 +23,6 @@ function page() {
                router.push("/")
           }
      }, [])
-
      const [deviceID, setDeviceID] = useState("GDL-001")
      const { user, dispatchAuth } = useAuthContext()
      const router = useRouter()

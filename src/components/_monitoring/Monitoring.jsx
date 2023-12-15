@@ -2,7 +2,7 @@
 
 import { useMonitoringContext } from '../../hooks/useMonitoringContext'
 import { useAuthContext } from "@/hooks/useAuthContext"
-import React ,{ useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import Loading from '../_loading/Loading'
 
@@ -18,28 +18,28 @@ const Graph = dynamic(() => import('./Graph')
           loading: () => <Loading />
      })
 
-const Monitoring = ({deviceID}) => {
+const Monitoring = ({ deviceID }) => {
      const [value, setValue] = useState({
-          value1 : 0,
-          value2 : 0,
-          value3 : 0,
-          value4 : 0,
+          value1: 0,
+          value2: 0,
+          value3: 0,
+          value4: 0,
      });
 
-     useEffect(()=>{
+     useEffect(() => {
           getMonitoring()
           const interval = setInterval(() => {
                getMonitoring()
           }, 3000);
           return () => clearInterval(interval);
-     },[deviceID])
+     }, [deviceID])
 
-     const getMonitoring = async ()=>{
-          const response = await fetch(`http://${process.env.BASE_URL}/api/monitoring/sget/${deviceID}`,{
+     const getMonitoring = async () => {
+          const response = await fetch(`http://${process.env.BASE_URL}/api/monitoring/sget/${deviceID}`, {
                method: "GET",
                headers: {
                     'Content-Type': 'application/json;charset=utf-8',
-                    "authorization" : `Bearer ${user.token}`
+                    "authorization": `Bearer ${user.token}`
                }
           })
           const result = await response.json()
@@ -51,13 +51,25 @@ const Monitoring = ({deviceID}) => {
                value4: parseFloat(datas.rt_baterai),
           })
      }
-     const {user} = useAuthContext()
+     const { user } = useAuthContext()
      const { showSection } = useMonitoringContext()
+
+     const getGraphData = async () => {
+          const response = await fetch(`http://${process.env.BASE_URL}/api/monitoring/sget/${deviceID}`, {
+               method: "GET",
+               headers: {
+                    'Content-Type': 'application/json;charset=utf-8',
+                    "authorization": `Bearer ${user.token}`
+               }
+          })
+          const result = await response.json()
+     }
+
      const graphData = [
-          [3, 13, 1, 55, 123, 545, 12, 3, 4, 12, 3, 3, 5],
-          [1, 4, 2, 1, 543, 123, 123, 45, 77, 123, 544, 213, 123],
-          [123, 45, 65, 65, 87, 134, 324, 123, 454, 123, 123, 123],
-          [100, 98, 97, 95, 91, 89, 87, 86, 81, 78, 70, 67,65]
+          [3, 13, 1, 55, 123, 545, 12, 3, 4, 12, 3, 3, 5,10],
+          [1, 4, 2, 1, 543, 123, 123, 45, 77, 123, 544, 213, 123,11],
+          [123, 45, 65, 65, 87, 134, 324, 123, 454, 123, 123, 123 ,23],
+          [100, 98, 97, 95, 91, 89, 87, 86, 81, 78, 70, 67, 65,32]
      ]
 
      return (

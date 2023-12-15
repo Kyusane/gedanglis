@@ -9,6 +9,12 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+.bg-images{
+  background-image: url('../../public/img/home.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 @layer base {
   table {
     font-family: arial, sans-serif;

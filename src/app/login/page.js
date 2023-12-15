@@ -7,18 +7,18 @@ import FormLogin from '@/components/FormLogin'
 import { useRouter } from 'next/navigation'
 
 const page = () => {
-  useEffect(()=>{
+  useEffect(() => {
     user.email != "" ? router.push('/account') : null
-  },[])
-
-  const {user}= useAuthContext()
+  }, [])
+  const { user } = useAuthContext()
   const router = useRouter()
   return (
     <>
-        <Navbar />
-        <div className='loginPage flex w-full h-screen justify-center items-center fixed'>
-          <FormLogin />
-        </div>
+      <Navbar />
+      <div className='bg-main fixed w-full h-screen opacity-70'></div>
+      <div className='loginPage flex w-full h-screen justify-center items-center fixed'>
+        <FormLogin />
+      </div>
     </>
   )
 }
