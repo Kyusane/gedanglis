@@ -11,7 +11,7 @@ const page = () => {
      }, [])
 
      const getData = async () => {
-          const response = await fetch(`http://${process.env.BASE_URL}/api/user/administrator/getdevice`, {
+          const response = await fetch(`${process.env.BASE_PROTOCOL}${process.env.BASE_URL}/api/user/administrator/getdevice`, {
                method: "GET",
                headers: {
                     'Content-Type': 'application/json;charset=utf-8',

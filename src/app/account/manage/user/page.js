@@ -20,7 +20,7 @@ const page = () => {
      }, [refresh])
 
      const getData = async () => {
-          const response = await fetch(`http://${process.env.BASE_URL}/api/user/administrator/getuser`, {
+          const response = await fetch(`${process.env.BASE_PROTOCOL}${process.env.BASE_URL}/api/user/administrator/getuser`, {
                method: "GET",
                headers: {
                     'Content-Type': 'application/json;charset=utf-8',
@@ -37,7 +37,7 @@ const page = () => {
                alert("Data Wajib Diisi")
                return
           } else {
-               const response = await fetch(`http://${process.env.BASE_URL}/api/user/signup`, {
+               const response = await fetch(`${process.env.BASE_PROTOCOL}${process.env.BASE_URL}/api/user/signup`, {
                     method: "POST",
                     headers: {
                          'Content-Type': 'application/json;charset=utf-8',

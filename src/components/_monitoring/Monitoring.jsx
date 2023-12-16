@@ -36,7 +36,7 @@ const Monitoring = ({ deviceID }) => {
      }, [deviceID])
 
      const getMonitoring = async () => {
-          const response = await fetch(`http://${process.env.BASE_URL}/api/monitoring/sget/${deviceID}`, {
+          const response = await fetch(`${process.env.BASE_PROTOCOL}${process.env.BASE_URL}/api/monitoring/sget/${deviceID}`, {
                method: "GET",
                headers: {
                     'Content-Type': 'application/json;charset=utf-8',
@@ -63,7 +63,7 @@ const Monitoring = ({ deviceID }) => {
 
      const getGraphData = async () => {
           const date = new Date().toLocaleString("id-ID",{timeZone: "Asia/Jakarta"}).slice(0,10).replaceAll('/','%2F');          
-          const response = await fetch(`http://${process.env.BASE_URL}/api/monitoring/graph/${deviceID}/${date}`, {
+          const response = await fetch(`${process.env.BASE_PROTOCOL}${process.env.BASE_URL}/api/monitoring/graph/${deviceID}/${date}`, {
                method: "GET",
                headers: {
                     'Content-Type': 'application/json;charset=utf-8',

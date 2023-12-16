@@ -12,7 +12,7 @@ const UserCard = ({ data }) => {
      const [ShowModalStatus, setShowModalStatus] = useState(false);
 
      const disableHandler = async (target, isActive) => {
-          const response = await fetch(`http://${process.env.BASE_URL}/api/user/change/isactive`, {
+          const response = await fetch(`${process.env.BASE_PROTOCOL}${process.env.BASE_URL}/api/user/change/isactive`, {
                method: "POST",
                headers: {
                     'Content-Type': 'application/json;charset=utf-8',
@@ -27,7 +27,7 @@ const UserCard = ({ data }) => {
      }
 
      const deleteHandler = async (target) => {
-          const response = await fetch(`http://${process.env.BASE_URL}/api/user/delete`, {
+          const response = await fetch(`${process.env.BASE_PROTOCOL}${process.env.BASE_URL}/api/user/delete`, {
                method: "DELETE",
                headers: {
                     'Content-Type': 'application/json;charset=utf-8',

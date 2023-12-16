@@ -25,7 +25,7 @@ const FormLogin = () => {
                     setLoading(false)
                     return
                }
-               const response = await fetch(`http://${process.env.BASE_URL}/api/user/login`, {
+               const response = await fetch(`${process.env.BASE_PROTOCOL}${process.env.BASE_URL}/api/user/login`, {
                     method: "POST",
                     headers: {
                          'Content-Type': 'application/json;charset=utf-8'

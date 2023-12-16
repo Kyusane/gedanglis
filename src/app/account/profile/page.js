@@ -29,7 +29,7 @@ const page = () => {
                          alert("Konfirmasi password anda")
                          return
                     }
-                    const response = await fetch(`http://${process.env.BASE_URL}/api/user/change/password`, {
+                    const response = await fetch(`${process.env.BASE_PROTOCOL}${process.env.BASE_URL}/api/user/change/password`, {
                          method: "POST",
                          headers: {
                               'Content-Type': 'application/json;charset=utf-8',
