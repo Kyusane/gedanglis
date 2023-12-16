@@ -23,7 +23,7 @@ const Tracking = ({ deviceID }) => {
 
      const getTracking = async () => {
           try {
-               const response = await fetch(`http://${process.env.BASE_URL}/api/tracking/sget/${deviceID}`, {
+               const response = await fetch(`${process.env.BASE_PROTOCOL}${process.env.BASE_URL}/api/tracking/sget/${deviceID}`, {
                     method: "GET",
                     headers: {
                          'Content-Type': 'application/json;charset=utf-8',
