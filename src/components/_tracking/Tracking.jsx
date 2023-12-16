@@ -17,7 +17,7 @@ const Tracking = ({ deviceID }) => {
           getTracking()
           const interval = setInterval(() => {
                getTracking()
-          }, 1000);
+          }, 500);
           return () => clearInterval(interval);
      }, [deviceID])
 
@@ -30,12 +30,12 @@ const Tracking = ({ deviceID }) => {
                          "authorization": `Bearer ${user.token}`
                     }
                })
-               const result = await response.json()
-               const location = result.position[0]
-               setDevicePosition([parseFloat(location.rt_lat), parseFloat(location.rt_long)])
+               const result = await response.json()    
+               const location = result.position
+               setDevicePosition([location.rt_lat, location.rt_long])
           } catch { setDevicePosition([0, 0]) }
-
      }
+
      const { user } = useAuthContext()
      const [showUserPosition, setShowUserPosition] = useState(false)
      const [userPos, setUserPos] = useState([0, 0])

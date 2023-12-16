@@ -9,7 +9,7 @@ const Map = ({ history, showHistory, showUserPos, userPos, position }) => {
      const zoom = 9;
      return (
           <>
-               <MapContainer className={"sm:w-3/4 w-full h-[70vh]"} center={position} zoom={zoom} scrollWheelZoom={true}>
+               <MapContainer className={"sm:w-3/4 w-full sm:h-[70vh] h-screen"} center={position} zoom={zoom} scrollWheelZoom={true}>
                     <TileLayer
                          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

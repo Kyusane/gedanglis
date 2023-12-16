@@ -66,9 +66,9 @@ const page = () => {
                          <label className='font-bold'>Device Access</label>
                          <input className="px-2 py-1 rounded-md text-sm" type="text" value={user.device_access} disabled></input>
                          <label className='font-bold'>Password</label>
-                         <input className="px-2 py-1 rounded-md text-sm text-black" type="password" ref={newPassword} placeholder='new Password'></input>
-                         <input className="px-2 py-1 rounded-md text-sm text-black" type="password" ref={coPassword} placeholder='konfirmasi password'></input>
-                         <button className="px-2 py-1 rounded-md text-sm bg-green-600 hover:scale-105 transition-all" onClick={changePassword}>Change Password</button>
+                         <input className="px-2 py-1 rounded-md text-sm text-black" type="password" ref={newPassword} placeholder='new Password' disabled></input>
+                         <input className="px-2 py-1 rounded-md text-sm text-black" type="password" ref={coPassword} placeholder='konfirmasi password' disabled></input>
+                         <button className="px-2 py-1 rounded-md text-sm bg-green-600 hover:scale-y-150 transition-all" onClick={changePassword} disabled>Change Password</button>
                     </form>
                </div>
           </div>

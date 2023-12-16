@@ -28,9 +28,10 @@ const Monitoring = ({ deviceID }) => {
 
      useEffect(() => {
           getMonitoring()
+          getGraphData()
           const interval = setInterval(() => {
                getMonitoring()
-          }, 3000);
+          }, 1000);
           return () => clearInterval(interval);
      }, [deviceID])
 
@@ -53,9 +54,16 @@ const Monitoring = ({ deviceID }) => {
      }
      const { user } = useAuthContext()
      const { showSection } = useMonitoringContext()
+     const [graphDatas, setGraphDatas] = useState([
+          [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+          [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+          [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+          [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+     ])
 
      const getGraphData = async () => {
-          const response = await fetch(`http://${process.env.BASE_URL}/api/monitoring/sget/${deviceID}`, {
+          const date = new Date().toLocaleString("id-ID",{timeZone: "Asia/Jakarta"}).slice(0,10).replaceAll('/','$2F');          
+          const response = await fetch(`http://${process.env.BASE_URL}/api/monitoring/graph/${deviceID}/${date}`, {
                method: "GET",
                headers: {
                     'Content-Type': 'application/json;charset=utf-8',
@@ -63,20 +71,27 @@ const Monitoring = ({ deviceID }) => {
                }
           })
           const result = await response.json()
+          const data = result.data
+          var graphData = [
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+          ]
+          data.map(d => {
+               const index = d.waktu.slice(0,2) - 6
+               graphData[0][index] = d.daya
+               graphData[1][index] = d.tegangan
+               graphData[2][index] = d.arus
+               graphData[3][index] = d.baterai
+          })
+          setGraphDatas(graphData);
      }
-
-     const graphData = [
-          [3, 13, 1, 55, 123, 545, 12, 3, 4, 12, 3, 3, 5,10],
-          [1, 4, 2, 1, 543, 123, 123, 45, 77, 123, 544, 213, 123,11],
-          [123, 45, 65, 65, 87, 134, 324, 123, 454, 123, 123, 123 ,23],
-          [100, 98, 97, 95, 91, 89, 87, 86, 81, 78, 70, 67, 65,32]
-     ]
-
      return (
           <div>
                <div className="p-2 w-full h-max sm:grid sm:grid-cols-3 gap-5 items-center rounded-sm sm:top-[10vh] rounded-xl shadow-2xl">
                     <div className="sm:col-span-2">
-                         <Graph graphData={graphData[showSection]} />
+                         <Graph graphData={graphDatas[showSection]} />
                     </div>
                     <CircularBar value={value} />
                </div>

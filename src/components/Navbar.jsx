@@ -15,7 +15,6 @@ const Navbar = ({ userLogin, role, email }) => {
   const router = useRouter()
   const { dispatchAuth } = useAuthContext()
   const [isVisible, setIsVisible] = useState({ box: false, bars: false, userbar: false })
-
   const [clientWindowHeight, setClientWindowHeight] = useState("");
   const [backgroundTransparacy, setBackgroundTransparacy] = useState(0);
   const [boxShadow, setBoxShadow] = useState(0);

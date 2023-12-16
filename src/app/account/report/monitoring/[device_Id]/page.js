@@ -1,7 +1,4 @@
-'use client'
-
 import React from 'react'
-{/* <h1>{decodeURIComponent(params.event)}</h1> */ }
 const page = ({ params }) => {
      return (
           <div className="w-full h-screen bg-secondary p-10">
@@ -17,20 +14,26 @@ const page = ({ params }) => {
                          </tr>
                     </table>
                </div>
-               <table>
-                    <tr>
+               <table className=' w-full h-max overflow-x-scroll  block sm:table'>
+                    <tr>  
                          <th>Timestamp</th>
-                         <th>Latitude</th>
-                         <th>Longitude</th>
+                         <th>Daya</th>
+                         <th>Tegangan</th>
+                         <th>Arus</th>
+                         <th>Baterai</th>
                     </tr>
                     <tr>
                          <td>Alfreds Futterkiste</td>
                          <td>Maria Anders</td>
                          <td>Germany</td>
+                         <td>Germany</td>
+                         <td>Germany</td>
                     </tr>
                     <tr>
                          <td>Centro comercial Moctezuma</td>
                          <td>Francisco Chang</td>
+                         <td>Mexico</td>
+                         <td>Mexico</td>
                          <td>Mexico</td>
                     </tr>
                </table>

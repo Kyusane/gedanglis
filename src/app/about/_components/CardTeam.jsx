@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 const CardTeam = ({image}) => {
      return (
-          <div className='w-[300px] h-[80vh] drop-shadow-2xl '>
+          <div className='w-[300px] h-auto drop-shadow-2xl '>
                <div className='w-full h-max bg-black  overflow-clip rounded-t-xl'>
                     <Image src={image} alt="track" 
                     className='hover:scale-105 transition-all hover:opacity-70 rounded-t-xl' />
