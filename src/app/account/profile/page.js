@@ -58,13 +58,13 @@ const page = () => {
                <div className='flex justify-center items-start w-screen h-[90vh] bg-secondary p-10'>
                     <form className='w-screen flex text-secondary justify-start  flex-col gap-3 bg-main h-max p-10 rounded-md'>
                          <label className='font-bold'>Username</label>
-                         <input className="px-2 py-1 rounded-md text-sm" type="text" value={user.name} disabled></input>
+                         <input className="px-2 py-1 rounded-md text-sm" type="text" value={user.user.name} disabled ></input>
                          <label className='font-bold'>Email</label>
-                         <input className="px-2 py-1 rounded-md text-sm" type="text" value={user.email} disabled></input>
+                         <input className="px-2 py-1 rounded-md text-sm" type="text" value={user.email} disabled ></input>
                          <label className='font-bold'>Role</label>
-                         <input className="px-2 py-1 rounded-md text-sm" type="text" value={user.role} disabled></input>
+                         <input className="px-2 py-1 rounded-md text-sm" type="text" value={user.user.role} disabled ></input>
                          <label className='font-bold'>Device Access</label>
-                         <input className="px-2 py-1 rounded-md text-sm" type="text" value={user.device_access} disabled></input>
+                         <input className="px-2 py-1 rounded-md text-sm" type="text" value={user.user.device_access} disabled></input>
                          <label className='font-bold'>Password</label>
                          <input className="px-2 py-1 rounded-md text-sm text-black" type="password" ref={newPassword} placeholder='new Password' disabled></input>
                          <input className="px-2 py-1 rounded-md text-sm text-black" type="password" ref={coPassword} placeholder='konfirmasi password' disabled></input>

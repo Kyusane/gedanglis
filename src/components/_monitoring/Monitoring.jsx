@@ -62,7 +62,7 @@ const Monitoring = ({ deviceID }) => {
      ])
 
      const getGraphData = async () => {
-          const date = new Date().toLocaleString("id-ID",{timeZone: "Asia/Jakarta"}).slice(0,10).replaceAll('/','$2F');          
+          const date = new Date().toLocaleString("id-ID",{timeZone: "Asia/Jakarta"}).slice(0,10).replaceAll('/','%2F');          
           const response = await fetch(`http://${process.env.BASE_URL}/api/monitoring/graph/${deviceID}/${date}`, {
                method: "GET",
                headers: {
@@ -79,7 +79,8 @@ const Monitoring = ({ deviceID }) => {
                [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
           ]
           data.map(d => {
-               const index = d.waktu.slice(0,2) - 6
+               const index = parseInt(d.waktu.slice(0,2)) - 6
+               console.log(index)
                graphData[0][index] = d.daya
                graphData[1][index] = d.tegangan
                graphData[2][index] = d.arus
