@@ -1,13 +1,12 @@
 'use client'
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import Navbar from '@/components/Navbar'
 import { useRouter } from 'next/navigation'
-
 import { useAuthContext } from "@/hooks/useAuthContext"
 
 const page = () => {
 
-     const {user} = useAuthContext()
+     const { user } = useAuthContext()
      const newPassword = useRef(null)
      const coPassword = useRef(null)
      const router = useRouter()

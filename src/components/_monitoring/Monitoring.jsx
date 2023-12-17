@@ -62,7 +62,7 @@ const Monitoring = ({ deviceID }) => {
      ])
 
      const getGraphData = async () => {
-          const date = new Date().toLocaleString("id-ID",{timeZone: "Asia/Jakarta"}).slice(0,10).replaceAll('/','%2F');          
+          const date = new Date().toLocaleString('id-ID',{ timeZone: 'Asia/Bangkok' }).slice(0,10).replaceAll('/','%2F')   
           const response = await fetch(`${process.env.BASE_PROTOCOL}${process.env.BASE_URL}/api/monitoring/graph/${deviceID}/${date}`, {
                method: "GET",
                headers: {

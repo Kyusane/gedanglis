@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -11,12 +10,6 @@
 
 html,body{
   overflow-x: hidden;
-}
-
-.bg-images{
-  background-image: url('../../public/img/home.png');
-  background-size: cover;
-  background-repeat: no-repeat;
 }
 
 @layer base {

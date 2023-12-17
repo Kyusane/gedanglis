@@ -1,9 +1,8 @@
 'use client'
 
 import React from 'react'
-{/* <h1>{decodeURIComponent(params.event)}</h1> */ }
+
 const page = ({ params }) => {
-     
      return (
           <div className="w-full h-screen bg-secondary p-10">
                <div className="py-5">

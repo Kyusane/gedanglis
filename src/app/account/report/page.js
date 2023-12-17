@@ -2,7 +2,6 @@
 import React from "react";
 import { useAuthContext } from "@/hooks/useAuthContext";
 import Navbar from "@/components/Navbar";
-
 import ReportCard from "./_components/ReportCard";
 
 const page = () => {

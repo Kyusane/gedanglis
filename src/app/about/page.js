@@ -1,26 +1,30 @@
-'use client'
-
+import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from "@/components/Navbar";
 import CardTeam from "./_components/CardTeam";
-import AOS from 'aos'
-import 'aos/dist/aos.css'
-import { useEffect, } from 'react'
 
 import Riyadh from '../../../public/img/team/riyadh.jpg'
 import Rahmat from '../../../public/img/team/rahmat.jpg'
 import Ilham from '../../../public/img/team/ilham.jpg'
 import Heri from '../../../public/img/team/heri.jpg'
+import BgImg from '../../../public/img/home.png'
 
 function page() {
-  useEffect(() => {
-    AOS.init({ duration: 500 })
-  }, [])
-
   return (
     <>
       <Navbar />
-      <div className='bg-images w-full h-screen fixed -z-10'></div>
+      <Image
+        alt="home"
+        src={BgImg}
+        quality={70}
+        style={{
+          position : 'fixed',
+          zIndex : '-10',
+          backgroundSize : 'cover',
+          width : '100%',
+          height : '100vh'
+        }}
+      />
       <section className='w-full h-screen bg-opacity-70 bg-main'>
         <div className="w-full sm:w-2/5 h-full p-5 bg-main sm:p-20 flex flex-col gap-10 justify-center items-start">
           <h2 className="text-[2rem] sm:text-[3rem] font-bold text-white">GEDANGLIS</h2>
@@ -36,7 +40,7 @@ function page() {
           <h2 className="text-[2rem] sm:text-[3rem]font-bold text-white">Teknik Elektro UNS</h2>
           <p className="p-5 border-r-2 text-justify text-white">Program Studi Teknik Elektro merupakan salah satu program studi di Fakultas Teknik Universitas Sebelas Maret (UNS) Surakarta yang berdiri sejak tanggal 29 April 2014 melalui Surat Keputusan Menteri Pendidikan dan Kebudayaan No. 17/E/O/2014.
             Kurikulum Program Studi Teknik Elektro UNS berpegang pada pedoman FORTEI (Forum Pendidikan Tinggi Teknik Elektro Indonesia) merupakan ringkasan yang disusun bersama tim asesor BAN PT (Badan Akreditasi Nasional Perguruan Tinggi) tahun 2011 , yang akan digunakan sebagai acuan BAN PT dalam menjaga kualitas perguruan tinggi di Indonesia. Pedoman Pengelolaan Program Studi Teknik Elektro tersebut meliputi : Bidang Peminatan, Kurikulum, Laboratorium dan Sumber Daya Manusia.
-             </p>
+          </p>
           <Link href="https://elektro.ft.uns.ac.id" className="px-7 py-3 bg-blue-500  transition-all hover:scale-110 rounded-3xl text-white">Read More</Link>
         </div>
       </section>
@@ -61,8 +65,6 @@ function page() {
           <CardTeam image={Heri} />
         </div>
       </section>
-      <section></section>
-
     </>
   )
 }

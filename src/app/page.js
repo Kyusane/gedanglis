@@ -10,6 +10,7 @@ import { useEffect, } from 'react'
 import Navbar from '@/components/Navbar'
 import TrackImg from '../../public/img/Track.png'
 import DonutImg from '../../public/img/donatnminum.png'
+import BgImg from '../../public/img/home.png'
 
 export default function Home() {
   useEffect(() => {
@@ -19,7 +20,18 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <div className='bg-images w-screen h-screen fixed overflow-clip -z-10'></div>
+      <Image
+        alt="home"
+        src={BgImg}
+        quality={70}
+        style={{
+          position : 'fixed',
+          zIndex : '-10',
+          backgroundSize : 'cover',
+          width : '100%',
+          height : '100vh'
+        }}
+      />
       <section className=" flex items-end justify-start w-full h-screen bg-main px-[10vw] py-[20vh] bg-opacity-70 ">
         <div className=' text-secondary' data-aos="fade-right" >
           <h1 className="text-[2.5rem] sm:text-[4rem] font-extrabold">GEDANGLIS</h1>
@@ -49,7 +61,6 @@ export default function Home() {
         </div>
         <Image src={TrackImg} width={300} height={300}  data-aos="fade-up" data-aos-offset={200} alt="track" />
       </section>
-
     </>
   )
 }
