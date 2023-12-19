@@ -2,7 +2,7 @@
 
 import { useMonitoringContext } from '../../hooks/useMonitoringContext'
 import { useAuthContext } from "@/hooks/useAuthContext"
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState ,useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import Loading from '../_loading/Loading'
 
@@ -55,14 +55,14 @@ const Monitoring = ({ deviceID }) => {
      const { user } = useAuthContext()
      const { showSection } = useMonitoringContext()
      const [graphDatas, setGraphDatas] = useState([
-          [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-          [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-          [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-          [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
      ])
 
      const getGraphData = async () => {
-          const date = new Date().toLocaleString('id-ID',{ timeZone: 'Asia/Bangkok' }).slice(0,10).replaceAll('/','%2F')   
+          const date = new Date().toLocaleString('id-ID', { timeZone: 'Asia/Bangkok' }).slice(0, 10).replaceAll('/', '%2F')
           const response = await fetch(`${process.env.BASE_PROTOCOL}${process.env.BASE_URL}/api/monitoring/graph/${deviceID}/${date}`, {
                method: "GET",
                headers: {
@@ -73,13 +73,13 @@ const Monitoring = ({ deviceID }) => {
           const result = await response.json()
           const data = result.data
           var graphData = [
-               [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-               [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-               [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-               [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
           ]
           data.map(d => {
-               const index = parseInt(d.waktu.slice(0,2)) - 6
+               const index = parseInt(d.waktu.slice(0, 2)) - 6
                console.log(index)
                graphData[0][index] = d.daya
                graphData[1][index] = d.tegangan
@@ -88,13 +88,20 @@ const Monitoring = ({ deviceID }) => {
           })
           setGraphDatas(graphData);
      }
+
+     const displayBar = useMemo(
+          () => (
+               <CircularBar value={value} />
+          ),
+          [value]
+     )
      return (
           <div>
                <div className="p-2 w-full h-max sm:grid sm:grid-cols-3 gap-5 items-center rounded-sm sm:top-[10vh] rounded-xl shadow-2xl">
                     <div className="sm:col-span-2">
                          <Graph graphData={graphDatas[showSection]} />
                     </div>
-                    <CircularBar value={value} />
+                    {displayBar}
                </div>
           </div>
      )

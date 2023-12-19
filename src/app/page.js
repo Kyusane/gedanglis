@@ -25,11 +25,11 @@ export default function Home() {
         src={BgImg}
         quality={70}
         style={{
-          position : 'fixed',
-          zIndex : '-10',
-          backgroundSize : 'cover',
-          width : '100%',
-          height : '100vh'
+          position: 'fixed',
+          zIndex: '-10',
+          backgroundSize: 'cover',
+          width: '100%',
+          height: '100vh'
         }}
       />
       <section className=" flex items-end justify-start w-full h-screen bg-main px-[10vw] py-[20vh] bg-opacity-70 ">
@@ -55,11 +55,11 @@ export default function Home() {
         <div className=' text-secondary z-50' data-aos="fade-right" data-aos-offset={200}>
           <h1 className="text-[2.5rem] sm:text-[4rem]  font-extrabold">Tracking</h1>
           <h2 className="text-[2rem] sm:text-[3.5rem]  pb-10 " >Gerobak Dagang Listrik</h2>
-          <Link href="/tracking"
+          <Link href="/about"
             className='px-[5rem] sm:px-[10rem] py-[1rem] font-bold bg-slate-50 text-slate-950 hover:bg-opacity-60'>
             SELENGKAPNYA</Link>
         </div>
-        <Image src={TrackImg} width={300} height={300}  data-aos="fade-up" data-aos-offset={200} alt="track" />
+        <Image src={TrackImg} width={300} height={300} data-aos="fade-up" data-aos-offset={200} alt="track" />
       </section>
     </>
   )

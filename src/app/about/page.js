@@ -18,11 +18,11 @@ function page() {
         src={BgImg}
         quality={70}
         style={{
-          position : 'fixed',
-          zIndex : '-10',
-          backgroundSize : 'cover',
-          width : '100%',
-          height : '100vh'
+          position: 'fixed',
+          zIndex: '-10',
+          backgroundSize: 'cover',
+          width: '100%',
+          height: '100vh'
         }}
       />
       <section className='w-full h-screen bg-opacity-70 bg-main'>

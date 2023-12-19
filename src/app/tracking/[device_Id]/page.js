@@ -28,7 +28,7 @@ const page = ({ params }) => {
                const location = result.position[0]
                setPosition([parseFloat(location.rt_lat), parseFloat(location.rt_long)])
           } catch {
-               setPosition([0, 0])
+               setPosition([-7.562678, 110.853736])
           }
 
      }
