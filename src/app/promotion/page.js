@@ -52,7 +52,7 @@ function page() {
                                    <h1 className="font-bold text-5xl">Promotions</h1>
                               </section>
                               <section className="w-full h-screen flex items-center sm:flex-row flex-col justify-center gap-20 text-main bg-secondary  p-5 sm:p-10">
-                                   <Image src={About} width={200} />
+                                   <Image src={About} width={200} quality={60} />
                                    <div className="flex flex-col gap-5">
                                         <h2 className="font-bold text-4xl">Apa itu SI GEDANGLIS</h2>
                                         <p className="text-justify">SI GEDANGLIS merupakan sistem informasi dari Gerobak Dagang Listrik yang mencakup gerobak-gerobak yang terintegrasi. Pada halaman ini kamu bisa mengetahui lokasi gerobak dan melakukan pemesanan makanan melalui kontak WhatsApp. SI GEDANGLIS menawarkan berbagai
