@@ -10,7 +10,7 @@ const Card = ({ img, Title}) => {
                <Image src={img} quality={60} className='rounded-2xl' />
                <div className='w-full p-5 gap-5 flex flex-col '>
                     <h2 className='text-main font-bold'>{Title}</h2>
-                    <Link href={`${process.env.BASE_PROTOCOL}${process.env.BASE_URL}/tracking/GDL-001`} className="w-36 h-auto px-7 py-3 bg-blue-500  transition-all hover:scale-110 rounded-3xl text-white text-center" >
+                    <Link href={`${process.env.BASE_PROTOCOL}sigedanglis.com/tracking/GDL-001`} className="w-36 h-auto px-7 py-3 bg-blue-500  transition-all hover:scale-110 rounded-3xl text-white text-center" >
                          Show
                     </Link>
                </div>
