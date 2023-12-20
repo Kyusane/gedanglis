@@ -15,6 +15,7 @@ const Tracking = ({ deviceID }) => {
      useEffect(() => {
           getLocation()
           getTracking()
+          getHistory()
           const interval = setInterval(() => {
                getTracking()
           }, 1000);
@@ -36,16 +37,37 @@ const Tracking = ({ deviceID }) => {
           } catch { setDevicePosition([0, 0]) }
      }
 
+     const getHistory = async () =>{
+          try{
+               const response = await fetch(`${process.env.BASE_PROTOCOL}${process.env.BASE_URL}/api/tracking/sget/none/${deviceID}`,{
+                    method: "GET",
+                    headers: {
+                         'Content-Type': 'application/json;charset=utf-8',
+                    }
+               })
+               const result = await response.json()
+               const history = result.data
+               var parseData = history.map(h => [h.lat , h.lng])
+               setHistoryData(parseData)
+          }catch{
+               setHistoryData([
+                    [-7.563666, 110.855615],
+                    [-7.565666, 110.857615],
+                    [-7.564666, 110.858034]
+               ]);
+          }
+     }
+
      const { user } = useAuthContext()
      const [showUserPosition, setShowUserPosition] = useState(false)
      const [userPos, setUserPos] = useState([0, 0])
      const [showHistory, setShowHistory] = useState(false)
      const [devicePosition, setDevicePosition] = useState([-7.562678, 110.853736])
-     const test = [
+     const [historyData, setHistoryData] = useState([
           [-7.563666, 110.855615],
           [-7.565666, 110.857615],
           [-7.564666, 110.858034]
-     ]
+     ])
      function getLocation() {
           if (navigator.geolocation) {
                navigator.geolocation.getCurrentPosition(showPosition);
@@ -58,7 +80,7 @@ const Tracking = ({ deviceID }) => {
 
      const displayMap = useMemo(
           () => (
-               <Map history={test}
+               <Map history={historyData}
                     position={devicePosition}
                     showHistory={showHistory}
                     showUserPos={showUserPosition}

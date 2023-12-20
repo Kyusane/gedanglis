@@ -23,6 +23,10 @@ const UserCard = ({ data }) => {
                     target: target
                })
           })
+          if (!response.ok) {
+               const error = await response.json()
+               alert(error.error)
+          }
           dispatchAuth({ type: "REFRESH" })
      }
 
@@ -47,7 +51,6 @@ const UserCard = ({ data }) => {
      }
      return (
           <>
-
                <div className={` ${data.isactive ? "bg-green-400 " : "bg-red-400"} flex w-full shadow-lg h-max  px-10 sm:px-20 py-5 justify-between items-start
                sm:flex-row sm:items-center flex-col gap-5 rounded-md text-green-950 hover:text-secondary hover:bg-main font-bold`}>
                     <div className='flex gap-2 flex-col'>

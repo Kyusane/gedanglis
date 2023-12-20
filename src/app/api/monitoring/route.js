@@ -16,14 +16,6 @@ export const GET = async(req,res) =>{
 }
 
 var realMonitoring = [{daya:"295",tegangan:"87",arus:"3.5",baterai:"96"}]
- 
-//  export const GET = async(req) =>{
-//       return Response.json({
-//            message : "Berhasil Ambil Data",
-//            monitoring :realMonitoring[0]
-//       })
-//  }
- 
  export async function POST(req){
       const {daya, tegangan, arus, baterai} = await req.json()
       realMonitoring = [{daya:daya,tegangan:tegangan,arus:arus,baterai:baterai}]

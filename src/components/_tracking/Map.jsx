@@ -1,6 +1,6 @@
 'use client'
 
-import { MapContainer, Marker, TileLayer, Popup, useMapEvents, Circle, Polyline} from "react-leaflet"
+import { MapContainer, Marker, TileLayer, Popup, useMapEvents, Polyline} from "react-leaflet"
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
@@ -31,18 +31,10 @@ const Map = ({ history, showHistory, showUserPos, userPos, position }) => {
                     <Marker position={position}>
                          <Popup>gerobak</Popup>
                     </Marker>
-                    <Circle center={position} pathOptions={{ fillColor: 'blue' }} radius={30} />
                     {
-                         showUserPos ? <Marker position={userPos}><Popup>Your Position</Popup></Marker> : null
-                    }
-                    {
-                         // showHistory ?
-                         //      (history.map(p =>
-                         //           <Circle center={[p.lat, p.long]} pathOptions={{ color: 'blue' }} radius={30} />))
-                         //      : null
                          showHistory ?
                               (
-                                   <Polyline pathOptions={{ color: 'lime', weight:'10'}}  positions={history} />
+                                   <Polyline pathOptions={{ color: 'blue', weight:'10'}}  positions={history} />
                               )
                               : null
                     }

@@ -1,4 +1,5 @@
 'use client'
+
 import React, { useEffect, useState, useRef } from 'react'
 import Navbar from '@/components/Navbar'
 import UserCard from './_components/UserCard'
@@ -14,7 +15,6 @@ const page = () => {
      const inputEmail = useRef(null)
      const [access, setAccess] = useState([])
 
- 
      useEffect(() => {
           getData()
      }, [refresh])
@@ -109,7 +109,7 @@ const page = () => {
                </div>
 
                <div className="w-full h-screen bg-secondary p-10 flex flex-col gap-2">
-                    {datas && datas.map(d => <UserCard data={d} />)}
+                    {datas && datas.map(d => <UserCard data={d}  />)}
                </div>
                
           </div>

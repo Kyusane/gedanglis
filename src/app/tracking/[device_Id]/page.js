@@ -1,19 +1,31 @@
 'use client'
-import React, { useState , useEffect} from 'react'
-import { MapContainer, Marker, TileLayer, Popup } from "react-leaflet"
+import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation';
+import { MapContainer, Marker, TileLayer, Popup, useMapEvents } from "react-leaflet"
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
 
-
 const page = ({ params }) => {
      useEffect(() => {
-          getTracking()
-          const interval = setInterval(() => {
+          if (params.device_Id.includes('GDL-')) {
                getTracking()
-          }, 1000);
-          return () => clearInterval(interval);
+               const interval = setInterval(() => {
+                    getTracking()
+               }, 1000);
+               return () => clearInterval(interval);
+          } else {
+               setPosition(params.device_Id.split('I'))
+          }
      }, [params.device_Id])
+
+     function LocationMarker() {
+          const map = useMapEvents({
+               click() {
+                    map.flyTo(position, 17)
+               }
+          })
+     }
 
      const getTracking = async () => {
           try {
@@ -30,20 +42,24 @@ const page = ({ params }) => {
           } catch {
                setPosition([-7.562678, 110.853736])
           }
-
      }
      const [position, setPosition] = useState([-7.562678, 110.853736])
-     const zoom = 10;
+     const zoom = 17;
+     const router = useRouter();
      return (
           <>
-               <MapContainer className={"w-full h-[90vh]"} center={position} zoom={zoom} scrollWheelZoom={true}>
+               <button
+                    onClick={e => router.back()}
+                    className=' hover:scale-105 z-[999] fixed px-10 py-3 bg-main rounded-lg right-0 text-secondary mt-5 mr-5'>BACK</button>
+               <MapContainer className={"w-full h-screen"} center={position} zoom={zoom} scrollWheelZoom={true}>
                     <TileLayer
                          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
+                    <LocationMarker />
                     <Marker position={position}>
                          <Popup>
-                              gerobak
+                              Location
                          </Popup>
                     </Marker>
                </MapContainer>

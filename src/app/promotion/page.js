@@ -71,12 +71,12 @@ function page() {
                               <section id="daftar" className="w-full h-max flex flex-col items-center justify-center gap-5 bg-secondary p-5">
                                    <h2 className="text-[3rem] font-bold text-main border-b-2 mb-10">TEMUKAN</h2>
                                    <div className="grid sm:grid-cols-3 w-full h-max-content sm:p-16 p-5 gap-5 grid-cols-1 sm:gap-16">
-                                        <Card data-aos="fade-up" data-aos-offset={200} img={Img1} Title={"Ayam Geprek Bu Puji"} />
-                                        <Card data-aos="fade-up" data-aos-offset={200} img={Img2} Title={"Sate Ayam Raos Echo"} />
-                                        <Card data-aos="fade-up" data-aos-offset={200} img={Img3} Title={"Soto Banjar Bu Rum"} />
-                                        <Card data-aos="fade-up" data-aos-offset={200} img={Img4} Title={"Warung Budhe Siti Lamongan"} />
-                                        <Card data-aos="fade-up" data-aos-offset={200} img={Img5} Title={"Ankringan Cak Ihang Alsi Nomer 1"} />
-                                        <Card data-aos="fade-up" data-aos-offset={200} img={Img6} Title={"Es Teh Jumbo Dewa Zeus"} />
+                                        <Card img={Img1} Title={"Ayam Geprek Bu Puji"} location={[-7.572327, 110.830074]} />
+                                        <Card img={Img2} Title={"Sate Ayam Raos Echo"} location={[-7.560049, 110.853849]} />
+                                        <Card img={Img3} Title={"Soto Banjar Bu Rum"} location={[-7.555641, 110.854607]} />
+                                        <Card img={Img4} Title={"Warung Budhe Siti Lamongan"} location={[-7.550864, 110.860520]} />
+                                        <Card img={Img5} Title={"Ankringan Cak Ihang Alsi Nomer 1"} location={[-7.550188, 110.865868]} />
+                                        <Card img={Img6} Title={"Es Teh Jumbo Dewa Zeus"} location={[-7.569450, 110.829395]} />
                                    </div>
                               </section>
                          </>
