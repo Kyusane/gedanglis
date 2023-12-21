@@ -10,7 +10,7 @@ const page = ({ params }) => {
 
      useEffect(() => {
           getReportData()
-     }, [])
+     }, [selectDate])
 
      const getReportData = async () => {
           try {

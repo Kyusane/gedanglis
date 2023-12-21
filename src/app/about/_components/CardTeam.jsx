@@ -12,7 +12,7 @@ const CardTeam = ({ image, nama, role, children }) => {
                </div>
                <div className='w-full h-2/6 p-5 gap-1 flex flex-col bg-secondary items-center justify-center rounded-b-xl leading-3'>
                     <h4 className='font-bold text-md'>{nama}</h4>
-                    <h6 className='text-sm'><i>Electrical Engginering 21</i></h6>
+                    <h6 className='text-sm'><i>Electrical Engineering 21</i></h6>
                     <h5 className='text-md font-semibold mt-3'>{role}</h5>
                     <h6 className='text-sm'>{children}</h6>
                </div>
